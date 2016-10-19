@@ -1,4 +1,10 @@
-# AppleEventHubFrontend
+# Angular Cli Seed
+
+Minimal angular cli template with initialized router and materialize-css
+
+app.js is an express server for running in production.
+
+You need to compile everything with -prod flag before pushing to production, app.js serves the index.html from dist folder.
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.17.
 
@@ -19,7 +25,7 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 ## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/). 
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 Before running the tests make sure you are serving the app via `ng serve`.
 
 ## Deploying to Github Pages
