@@ -5,7 +5,7 @@
   "author": "Aslan Vatsaev (@avatsaev)",
   "angular-cli": {},
   "scripts": {
-    "start": "node app.js",
+    "start": "node bin/www",
     "ngserve": "ng server",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",

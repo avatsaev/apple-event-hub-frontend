@@ -36,3 +36,4 @@ Thumbs.db
 #.elasticbeanstalk/*
 #!.elasticbeanstalk/*.cfg.yml
 #!.elasticbeanstalk/*.global.yml
+.elasticbeanstalk/app_versions/app-2282-161021_003911.zip
