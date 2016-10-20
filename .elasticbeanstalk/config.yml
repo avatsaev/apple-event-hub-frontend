@@ -1,6 +1,6 @@
 branch-defaults:
   master:
-    environment: null
+    environment: prod-env
     group_suffix: null
 global:
   application_name: apple-event-hub-frontend
