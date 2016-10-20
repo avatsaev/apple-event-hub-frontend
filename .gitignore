@@ -23,7 +23,7 @@
 npm-debug.log
 testem.log
 /typings
-
+.elasticbeanstalk
 # e2e
 /e2e/*.js
 /e2e/*.map
