@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
 import {environment} from "../../environments/environment";
+import {ModalComponent} from "ng2-bs3-modal/components/modal";
 
 declare let io:any;
 
@@ -8,15 +9,16 @@ declare let io:any;
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.sass']
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, AfterViewInit{
 
   private socket;
   messages:Array<Object>;
   msg_input:string;
+  username:string;
 
-  constructor() {
+  // @ViewChild('username_modal') username_modal:ModalComponent;
 
-  }
+  constructor() {}
 
   on_msg_send(){
     console.log("sending...");
@@ -26,7 +28,14 @@ export class ChatComponent implements OnInit {
     this.messages.push({username: 'anon', msg: this.msg_input, me: true})
     this.msg_input = "";
 
+
   }
+
+
+  ngAfterViewInit() {
+
+  }
+
 
   ngOnInit() {
 
@@ -47,6 +56,8 @@ export class ChatComponent implements OnInit {
       console.log(data);
       this.messages.push(data)
     }.bind(this));
+
+
   }
 
 }
