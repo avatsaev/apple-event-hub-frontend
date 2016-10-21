@@ -5,11 +5,14 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 
+
+
 import { AppComponent } from './app.component';
 import { HomeModule } from './home/home.module';
 
 import {AppRoutes} from './app.routing'
 import { MaterializeModule } from "angular2-materialize";
+
 
 @NgModule({
   declarations: [

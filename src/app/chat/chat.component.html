@@ -1,0 +1,64 @@
+
+
+<div class="row chat-wrapper">
+
+  <div class=" chat-header col s12 center">
+
+    <div class="valign-wrapper center name-circle" >
+      <span class="valign">
+       C
+      </span>
+    </div>
+
+    <span>
+      Chat
+    </span>
+
+  </div>
+
+
+  <div #message_list class="message-list col s12" [scrollTop]="message_list.scrollHeight">
+
+    <div [ngClass]="{'my-msg': message.me }" class="message-container"  *ngFor="let message of messages" >
+      <b>{{message.username}}:
+
+      </b>
+      <br>
+      {{message.msg}}
+    </div>
+
+
+
+  </div>
+
+  <div class="col s12 chat-input">
+
+
+
+    <div class="input-field  message-input col s12">
+      <input autocomplete="off"  [(ngModel)]="msg_input" (keyup.enter)="on_msg_send()" placeholder="message..." name="msg_input" type="text" >
+    </div>
+
+
+
+
+
+
+
+    <!--<div class="col m1">-->
+    <!--<button class= 'btn blue darken-1' (click)="on_msg_send()" >-->
+    <!--SEND-->
+    <!--</button>-->
+    <!--</div>-->
+
+
+  </div>
+
+
+
+
+
+
+
+</div>
+

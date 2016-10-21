@@ -5,7 +5,7 @@
   "author": "Aslan Vatsaev (@avatsaev)",
   "angular-cli": {},
   "scripts": {
-    "start": "node bin/www",
+    "start": "node app.js",
     "ngserve": "ng server",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
@@ -19,7 +19,8 @@
     "core-js": "^2.4.1",
     "express": "^4.14.0",
     "morgan": "~1.7.0",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "socket.io": "^1.5.0"
   },
   "devDependencies": {
     "@angular/common": "~2.0.0",
@@ -30,6 +31,7 @@
     "@angular/platform-browser": "~2.0.0",
     "@angular/platform-browser-dynamic": "~2.0.0",
     "@angular/router": "~3.0.0",
+    "angular2-scroll-glue": "^1.0.7",
     "core-js": "^2.4.1",
     "rxjs": "5.0.0-beta.12",
     "ts-helpers": "^1.1.1",
