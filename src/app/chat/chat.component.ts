@@ -18,14 +18,16 @@ export class ChatComponent implements OnInit, AfterViewInit{
 
   // @ViewChild('username_modal') username_modal:ModalComponent;
 
-  constructor() {}
+  constructor() {
+    this.username = "anonymous"
+  }
 
   on_msg_send(){
     console.log("sending...");
     console.log(this.msg_input)
 
-    this.socket.emit("chat", {username: 'anon', msg: this.msg_input});
-    this.messages.push({username: 'anon', msg: this.msg_input, me: true})
+    this.socket.emit("chat", {username: this.username, msg: this.msg_input});
+    this.messages.push({username: this.username, msg: this.msg_input, me: true})
     this.msg_input = "";
 
 
