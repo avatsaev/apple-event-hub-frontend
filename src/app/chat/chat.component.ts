@@ -39,8 +39,13 @@ export class ChatComponent implements OnInit, AfterViewInit{
   }
 
   on_username(){
-    this.username = prompt("Enter your username", this.username);
-    localStorage.setItem('username', this.username);
+    let uname = prompt("Enter your username", this.username);
+
+    if(uname && uname.length){
+      this.username =uname;
+      localStorage.setItem('username', this.username);
+    }
+
   }
 
 
