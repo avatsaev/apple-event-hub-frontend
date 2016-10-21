@@ -4,6 +4,8 @@
 
   <div class=" chat-header col s12 center">
 
+    <img (click)="on_username()" src="/assets/images/info.png" class="chat-info pull-right"/>
+
     <div class="valign-wrapper center name-circle" >
       <span class="valign">
        C
@@ -11,8 +13,10 @@
     </div>
 
     <span>
-      Chat
+      Chat ({{user_count}})
     </span>
+
+
 
   </div>
 

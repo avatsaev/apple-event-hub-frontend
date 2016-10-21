@@ -16,20 +16,20 @@ export class ChatComponent implements OnInit, AfterViewInit{
   msg_input:string;
   username:string;
 
+  user_count:number;
+
   // @ViewChild('username_modal') username_modal:ModalComponent;
 
   constructor() {
+    this.user_count = 0;
     this.username = "anonymous"
   }
 
   on_msg_send(){
-    console.log("sending...");
-    console.log(this.msg_input)
 
     this.socket.emit("chat", {username: this.username, msg: this.msg_input});
     this.messages.push({username: this.username, msg: this.msg_input, me: true})
     this.msg_input = "";
-
 
   }
 
@@ -38,10 +38,21 @@ export class ChatComponent implements OnInit, AfterViewInit{
 
   }
 
+  on_username(){
+    this.username = prompt("Enter your username", this.username);
+    localStorage.setItem('username', this.username);
+  }
+
 
   ngOnInit() {
 
     this.messages = [];
+
+    if(!localStorage.getItem('username')){
+      localStorage.setItem('username', this.username);
+    }
+
+    this.username = localStorage.getItem('username');
 
     this.socket = io(environment.socket_url);
 
@@ -51,6 +62,11 @@ export class ChatComponent implements OnInit, AfterViewInit{
 
     this.socket.on('disconnect', function(socket_){
       console.log("user disconnected")
+    }.bind(this));
+
+
+    this.socket.on('user_count_update', function (data) {
+      this.user_count = data.user_count;
     }.bind(this));
 
     this.socket.on('chat_broadcast', function(data:Object){
