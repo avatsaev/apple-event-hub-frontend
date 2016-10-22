@@ -14,6 +14,8 @@ const profanity_db = require("./profanity_db");
 let app = express();
 
 let user_count = 0;
+let message_history = [];
+const msg_history_buffer_size = 20;
 
 app.set('port', port);
 
@@ -38,6 +40,7 @@ io.on('connection', function (socket) {
 
   user_count+=1;
   socket.emit('user_count_update', {user_count});
+  socket.emit('message_history', {message_history})
   socket.broadcast.emit('user_count_update', {user_count});
 
 
@@ -50,7 +53,14 @@ io.on('connection', function (socket) {
   socket.on('chat', function (data) {
 
     if (profanity_db.indexOf(data.msg) == -1) {
+
       socket.broadcast.emit('chat_broadcast', data);
+
+      if (message_history.length >= msg_history_buffer_size){
+        message_history.shift()
+      }
+
+      message_history.push(data);
     }
 
   });

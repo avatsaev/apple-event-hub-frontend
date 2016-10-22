@@ -61,8 +61,16 @@ export class ChatComponent implements OnInit, AfterViewInit{
 
     this.socket = io(environment.socket_url);
 
-    this.socket.on('connect', function(socket_){
-      console.log("user connected")
+    // this.socket.on('connect', function(socket_){
+    //   console.log("user connected")
+    // }.bind(this));
+
+    this.socket.on('message_history', function(data){
+
+      for(let msg of data.message_history){
+        this.messages.push(msg);
+      }
+
     }.bind(this));
 
     this.socket.on('disconnect', function(socket_){
@@ -71,15 +79,16 @@ export class ChatComponent implements OnInit, AfterViewInit{
 
 
     this.socket.on('user_count_update', function (data) {
+
       this.user_count = data.user_count;
+
     }.bind(this));
 
     this.socket.on('chat_broadcast', function(data:Object){
 
-      console.log(data);
-      this.messages.push(data)
-    }.bind(this));
+      this.messages.push(data);
 
+    }.bind(this));
 
   }
 
