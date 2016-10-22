@@ -9,8 +9,13 @@ let favicon = require('serve-favicon');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 let bodyParser = require('body-parser');
+const profanity_db = require("./profanity_db");
 
 let app = express();
+
+let user_count = 0;
+let message_history = [];
+const msg_history_buffer_size = 20;
 
 app.set('port', port);
 
@@ -33,15 +38,35 @@ app.get('/*', function(req, res) {
 
 io.on('connection', function (socket) {
 
-  socket.emit('new_user');
+  user_count+=1;
+  socket.emit('user_count_update', {user_count});
+  socket.emit('message_history', {message_history})
+  socket.broadcast.emit('user_count_update', {user_count});
+
+
+  socket.on('disconnect', function(){
+    user_count-=1;
+    socket.broadcast.emit('user_count_update', {user_count});
+
+  });
 
   socket.on('chat', function (data) {
-    console.log("new message!", data)
-    socket.broadcast.emit('chat_broadcast', data);
+
+    if (profanity_db.indexOf(data.msg) == -1) {
+
+      socket.broadcast.emit('chat_broadcast', data);
+
+      if (message_history.length >= msg_history_buffer_size){
+        message_history.shift()
+      }
+
+      message_history.push(data);
+    }
+
   });
 
 });
 
-console.log("listening on port "+ port)
+console.log("listening on port "+ port);
 http.listen(port);
 
