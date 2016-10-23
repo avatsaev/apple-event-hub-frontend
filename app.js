@@ -52,7 +52,11 @@ io.on('connection', function (socket) {
 
   socket.on('chat', function (data) {
 
-    if (profanity_db.indexOf(data.msg) == -1 && data.username != "Slack-Spambot-Spambot-Slack") {
+    if (
+      profanity_db.indexOf(data.msg) == -1
+      && data.username != "Slack-Spambot-Spambot-Slack"
+      && data.msg.length > 0
+    ) {
 
       socket.broadcast.emit('chat_broadcast', data);
 
