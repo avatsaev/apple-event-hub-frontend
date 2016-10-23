@@ -27,9 +27,15 @@ export class ChatComponent implements OnInit, AfterViewInit{
 
   on_msg_send(){
 
-    this.socket.emit("chat", {username: this.username, msg: this.msg_input});
-    this.messages.push({username: this.username, msg: this.msg_input, me: true})
-    this.msg_input = "";
+    if(this.msg_input.length > 0){
+
+      this.socket.emit("chat", {username: this.username, msg: this.msg_input});
+      this.messages.push({username: this.username, msg: this.msg_input, me: true})
+      this.msg_input = "";
+
+    }
+
+
 
   }
 
