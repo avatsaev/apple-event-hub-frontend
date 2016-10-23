@@ -15,7 +15,7 @@ let app = express();
 
 let user_count = 0;
 let message_history = [];
-const msg_history_buffer_size = 20;
+const msg_history_buffer_size = 30;
 
 app.set('port', port);
 
@@ -52,7 +52,7 @@ io.on('connection', function (socket) {
 
   socket.on('chat', function (data) {
 
-    if (profanity_db.indexOf(data.msg) == -1) {
+    if (profanity_db.indexOf(data.msg) == -1 && data.username != "Slack-Spambot-Spambot-Slack") {
 
       socket.broadcast.emit('chat_broadcast', data);
 
